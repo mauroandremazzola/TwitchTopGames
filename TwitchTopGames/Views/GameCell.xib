@@ -18,7 +18,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="GameCollectionViewCell" customModule="TwitchTopGames" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="GameCell" customModule="TwitchTopGames" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="201" height="177"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -28,6 +28,23 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wA6-mk-f0r">
                         <rect key="frame" x="0.0" y="0.0" width="201" height="177"/>
                     </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nSQ-ld-jfK">
+                        <rect key="frame" x="161" y="5" width="35" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="35" id="pPE-lM-XHC"/>
+                            <constraint firstAttribute="width" constant="35" id="tAn-oq-mTG"/>
+                        </constraints>
+                        <color key="tintColor" red="0.99607843139999996" green="0.90980392160000001" blue="0.43137254899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <state key="normal" image="star"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="imageColor">
+                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="didTapSatar:" destination="gTV-IL-0wX" eventType="touchUpInside" id="qcf-F1-VWX"/>
+                        </connections>
+                    </button>
                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="umO-qD-LpY">
                         <rect key="frame" x="0.0" y="106" width="201" height="71"/>
                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="7aQ-xw-g6e">
@@ -37,7 +54,7 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3hO-MD-rzA">
                                     <rect key="frame" x="5" y="0.0" width="191" height="71"/>
                                     <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="15"/>
-                                    <color key="textColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
@@ -55,9 +72,11 @@
             <constraints>
                 <constraint firstItem="wA6-mk-f0r" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="6fJ-Qw-qeA"/>
                 <constraint firstAttribute="trailing" secondItem="umO-qD-LpY" secondAttribute="trailing" id="CKA-yk-ZS6"/>
+                <constraint firstItem="nSQ-ld-jfK" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="CvZ-7T-0tZ"/>
                 <constraint firstAttribute="bottom" secondItem="wA6-mk-f0r" secondAttribute="bottom" id="DgT-LG-NhU"/>
                 <constraint firstItem="umO-qD-LpY" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="I0e-jG-lsE"/>
                 <constraint firstAttribute="bottom" secondItem="umO-qD-LpY" secondAttribute="bottom" id="Jmo-Jx-rJW"/>
+                <constraint firstAttribute="trailing" secondItem="nSQ-ld-jfK" secondAttribute="trailing" constant="5" id="Luj-K1-Dds"/>
                 <constraint firstAttribute="trailing" secondItem="wA6-mk-f0r" secondAttribute="trailing" id="ZcZ-OG-V5c"/>
                 <constraint firstItem="wA6-mk-f0r" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="diT-QO-CRl"/>
                 <constraint firstItem="umO-qD-LpY" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="0.4" id="try-Tk-cVI"/>
@@ -65,10 +84,14 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="201" height="177"/>
             <connections>
+                <outlet property="buttonStar" destination="nSQ-ld-jfK" id="Poi-PS-Bbq"/>
                 <outlet property="image" destination="wA6-mk-f0r" id="kNv-sS-l2i"/>
                 <outlet property="title" destination="3hO-MD-rzA" id="Jej-lw-w0i"/>
             </connections>
             <point key="canvasLocation" x="24.5" y="117.5"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="star" width="25" height="25"/>
+    </resources>
 </document>

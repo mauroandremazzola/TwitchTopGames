@@ -1,5 +1,5 @@
 //
-//  NotificationName.swift
+//  NotificationName+Game.swift
 //  TwitchTopGames
 //
 //  Created by Mauro André Barros Mazzola on 30/01/18.
@@ -9,7 +9,7 @@
 import Foundation
 
 enum GameKeys: String {
-    case id = ""
+    case id
 }
 
 extension Notification.Name {

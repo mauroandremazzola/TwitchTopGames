@@ -6,8 +6,23 @@
 	<dict>
 		<key>TwitchTopGames.xcscheme</key>
 		<dict>
+			<key>isShown</key>
+			<true/>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>4</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>C8253422201BA56100FFB499</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C8253436201BA56100FFB499</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

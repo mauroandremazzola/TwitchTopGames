@@ -7,3 +7,27 @@
 //
 
 import Foundation
+
+struct TwitchAPIResponse: Decodable {
+    
+    struct APIResponseLink: Codable {
+        var current : String
+        var next : String
+        
+        enum CodingKeys : String, CodingKey {
+            case current = "self"
+            case next
+        }
+    }
+    
+    var total : Int
+    var links : APIResponseLink?
+    var games : [Game]
+    
+    enum CodingKeys : String, CodingKey {
+        case total = "_total"
+        case links = "_links"
+        case games = "top"
+    }
+    
+}

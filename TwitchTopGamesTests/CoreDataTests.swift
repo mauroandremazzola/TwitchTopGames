@@ -7,20 +7,31 @@
 //
 
 import XCTest
+@testable import TwitchTopGames
 
 class CoreDataTests: XCTestCase {
+    
+    var gameTestOne : Game {
+        get {
+            let game = Game.mock()
+            game.id = 1
+            game.name = "game test 1"
+            return game
+        }
+    }
+    
+    var gameTestTwo : Game {
+        get {
+            let game = Game.mock()
+            game.id = 2
+            game.name = "game test 2"
+            return game
+        }
+    }
         
     override func setUp() {
         super.setUp()
-        
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        XCUIApplication().launch()
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
     }
     
     override func tearDown() {
@@ -28,9 +39,38 @@ class CoreDataTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testLoadFavorites() {
+        let dataManager = DataManager()
+        dataManager.addToFavorites(gameTestOne)
+        let games = dataManager.loadFavorites()
+        XCTAssert(games.count >= 0, "Bug: DataManager+Game - loadFavorites() ")
+        dataManager.removeFromFavorite(game: gameTestOne)
+    }
+    
+    func testRemoveFromFavorite() {
+        let dataManager = DataManager()
+        dataManager.addToFavorites(gameTestOne)
+        let finded = dataManager.findGame(id: gameTestOne.id)!
+        dataManager.removeFromFavorite(game: finded)
+        let games = dataManager.loadFavorites()
+        XCTAssert(!games.contains(where: { $0.id == gameTestOne.id }), "Bug: DataManager+Game - removeFromFavorite() ")
+    }
+    
+    func testFindGame() {
+        let dataManager = DataManager()
+        dataManager.addToFavorites(gameTestOne)
+        let finded = dataManager.findGame(id: gameTestOne.id)
+        XCTAssert(gameTestOne.id == finded?.id, "Bug: DataManager+Game - findGame(id: Int32) ")
+        dataManager.removeFromFavorite(game: gameTestOne)
+    }
+    
+    func testGamesMustUniqueInFavorites() {
+        let dataManager = DataManager()
+        dataManager.addToFavorites(gameTestOne)
+        dataManager.addToFavorites(gameTestOne)
+        let games = dataManager.loadFavorites()
+        XCTAssert(games.filter({ $0.id == gameTestOne.id }).count == 1, "Bug: DataManager+Game - addToFavorites() ")
+        dataManager.removeFromFavorite(game: gameTestOne)
     }
     
 }

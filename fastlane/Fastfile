@@ -1,0 +1,37 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+	
+	desc "execute tests"
+	lane :tests do
+  		run_tests(workspace: "TwitchTopGames.xcworkspace",
+  			devices: ['iPhone 6'],
+            scheme: "TwitchTopGames")
+	end
+
+  	desc "execute iPhone tests"
+  	lane :iPhoneTests do
+  		run_tests(workspace: "TwitchTopGames.xcworkspace",
+            devices: ['iPhone X', 'iPhone SE', 'iPhone 7'],
+            scheme: "TwitchTopGames")
+	end
+
+	desc "execute iPad tests"
+  	lane :iPadTests do
+  		run_tests(workspace: "TwitchTopGames.xcworkspace",
+            devices: ["iPad Air", "iPad Air 2","iPad Pro (12.9-inch)"],
+            scheme: "TwitchTopGames")
+	end
+
+end
