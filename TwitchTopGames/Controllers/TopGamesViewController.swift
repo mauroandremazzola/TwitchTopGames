@@ -16,8 +16,11 @@ class TopGamesViewController: UIViewController {
     @IBOutlet weak var collection: UICollectionView! {
         didSet {
             collection.register(GameCell.getUINib(), forCellWithReuseIdentifier: GameCell.identifier)
+            collection.addSubview(refreshControl)
         }
     }
+    
+    @IBOutlet weak var buttonReload: UIButton!
     
     let refreshControl : UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -37,6 +40,7 @@ class TopGamesViewController: UIViewController {
     internal var games = [Game]() {
         didSet {
             reloadCollection()
+            buttonReload.isHidden = games.count > 0
         }
     }
     
@@ -45,18 +49,18 @@ class TopGamesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadGames()
-        collection.addSubview(refreshControl)
         NotificationCenter.default.addObserver(self, selector: #selector(didAddToFavorites(_:)), name: .addToFavorites, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(didRemoveFromFavorites(_:)), name: .removeFromFavorites, object: nil)
+        updateNumberOfItemsPerRow()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        view.layoutIfNeeded()
-        collection.setNumberOfItensForRow(itens: 2, spacing: 10)
-        view.layoutIfNeeded()
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate(alongsideTransition: nil) { _ in
+            self.updateNumberOfItemsPerRow()
+        }
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let controller  = segue.destination as? DetailViewController, let game = sender as? Game {
             controller.game = game
@@ -76,7 +80,13 @@ class TopGamesViewController: UIViewController {
         loadGames()
     }
     
-     //MARK - notification methods
+    //MARK - notification IBActions
+    
+    @IBAction func didTapReload(_ sender: UIButton) {
+        loadGames()
+    }
+    
+    //MARK - notification methods
     
     @objc func didAddToFavorites(_ notification: NSNotification) {
         guard let userInfo = notification.userInfo,
@@ -119,6 +129,18 @@ class TopGamesViewController: UIViewController {
     
     //MARK - privates
     
+    private func updateNumberOfItemsPerRow() {
+        let orientation = UIDevice.current.orientation
+        guard let layout = collection?.collectionViewLayout as? GridViewLayout else { return }
+        
+        if UIDeviceOrientationIsPortrait(orientation) {
+            layout.setNumberOfItemsPerRow(itensPerRow: 2, minimumInteritemSpacing: 5, minimumLineSpacing: 5)
+        } else {
+            layout.setNumberOfItemsPerRow(itensPerRow: 3, minimumInteritemSpacing: 5, minimumLineSpacing: 5)
+        }
+        layout.invalidateLayout()
+    }
+    
     private func updateFavoriteGame(id: Int32, isFavorite: Bool) {
         if let index = games.index(where: { $0.id == id })   {
             games[index].isFavorite = isFavorite
@@ -147,6 +169,7 @@ class TopGamesViewController: UIViewController {
         activityIndicator.startAnimating()
         collection.alpha = 0.4
         collection.isUserInteractionEnabled = false
+        self.buttonReload.isHidden =  true
     }
     
     private func stopActivityIndicator(){
@@ -154,6 +177,7 @@ class TopGamesViewController: UIViewController {
         collection.isUserInteractionEnabled = true
         collection.alpha = 1
         refreshControl.endRefreshing()
+        buttonReload.isHidden = self.games.count > 0
     }
     
     private func showAlertMessage(_ message: String) {

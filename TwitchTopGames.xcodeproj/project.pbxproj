@@ -29,13 +29,14 @@
 		C8334D01201F399600F85935 /* TwitchAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8334D00201F399600F85935 /* TwitchAPIResponse.swift */; };
 		C8334D32201F78F000F85935 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8334D31201F78F000F85935 /* DataManager.swift */; };
 		C8334D35201F851900F85935 /* UIImageView+AlamofireImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8334D34201F851900F85935 /* UIImageView+AlamofireImage.swift */; };
-		C8334D38201F887C00F85935 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8334D37201F887C00F85935 /* UICollectionView.swift */; };
+		C8334D38201F887C00F85935 /* GridViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8334D37201F887C00F85935 /* GridViewLayout.swift */; };
 		C8334D3A201F993100F85935 /* JSONDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8334D39201F993100F85935 /* JSONDecoder.swift */; };
 		C882A37D2021690800284735 /* TwitchTopGamesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C882A37C2021690800284735 /* TwitchTopGamesUITests.swift */; };
 		C8A18307201BB5DC008BCC78 /* TwitchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A18306201BB5DC008BCC78 /* TwitchAPI.swift */; };
 		C8C4CC20202023AC00D98AD5 /* DataManager+Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C4CC1F202023AC00D98AD5 /* DataManager+Game.swift */; };
 		C8C4CC232020A99800D98AD5 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C4CC222020A99800D98AD5 /* UIColor.swift */; };
 		C8C4CC252020C82F00D98AD5 /* NotificationName+Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C4CC242020C82F00D98AD5 /* NotificationName+Game.swift */; };
+		C8CAFE452023476700EBF13F /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CAFE442023476600EBF13F /* UIView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,7 +86,7 @@
 		C8334D00201F399600F85935 /* TwitchAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitchAPIResponse.swift; sourceTree = "<group>"; };
 		C8334D31201F78F000F85935 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		C8334D34201F851900F85935 /* UIImageView+AlamofireImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+AlamofireImage.swift"; sourceTree = "<group>"; };
-		C8334D37201F887C00F85935 /* UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
+		C8334D37201F887C00F85935 /* GridViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewLayout.swift; sourceTree = "<group>"; };
 		C8334D39201F993100F85935 /* JSONDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoder.swift; sourceTree = "<group>"; };
 		C882A37A2021690800284735 /* TwitchTopGamesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TwitchTopGamesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C882A37C2021690800284735 /* TwitchTopGamesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitchTopGamesUITests.swift; sourceTree = "<group>"; };
@@ -94,6 +95,7 @@
 		C8C4CC1F202023AC00D98AD5 /* DataManager+Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataManager+Game.swift"; sourceTree = "<group>"; };
 		C8C4CC222020A99800D98AD5 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		C8C4CC242020C82F00D98AD5 /* NotificationName+Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName+Game.swift"; sourceTree = "<group>"; };
+		C8CAFE442023476600EBF13F /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		F4C7B7297127372C954F083E /* Pods_TwitchTopGames.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TwitchTopGames.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -231,11 +233,11 @@
 		C8334D33201F84E200F85935 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				C8334D37201F887C00F85935 /* UICollectionView.swift */,
 				C8334D34201F851900F85935 /* UIImageView+AlamofireImage.swift */,
 				C8334D39201F993100F85935 /* JSONDecoder.swift */,
 				C8C4CC222020A99800D98AD5 /* UIColor.swift */,
 				C8C4CC242020C82F00D98AD5 /* NotificationName+Game.swift */,
+				C8CAFE442023476600EBF13F /* UIView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -265,6 +267,7 @@
 				C8334CE7201C9C6100F85935 /* GameCell.swift */,
 				C8334CE8201C9C6100F85935 /* GameCell.xib */,
 				C8334CED201CAA3100F85935 /* ActivityIndicatorView.swift */,
+				C8334D37201F887C00F85935 /* GridViewLayout.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -526,7 +529,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C8334D38201F887C00F85935 /* UICollectionView.swift in Sources */,
+				C8CAFE452023476700EBF13F /* UIView.swift in Sources */,
+				C8334D38201F887C00F85935 /* GridViewLayout.swift in Sources */,
 				C8253429201BA56100FFB499 /* TopGamesViewController.swift in Sources */,
 				C8334CE9201C9C6100F85935 /* GameCell.swift in Sources */,
 				C8334CF0201CAC5300F85935 /* FavoritesViewController.swift in Sources */,
@@ -715,8 +719,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 745V2GUZMT;
 				INFOPLIST_FILE = TwitchTopGames/Source/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = mauroandremazzola.TwitchTopGames;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -733,8 +738,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 745V2GUZMT;
 				INFOPLIST_FILE = TwitchTopGames/Source/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = mauroandremazzola.TwitchTopGames;
 				PRODUCT_NAME = "$(TARGET_NAME)";

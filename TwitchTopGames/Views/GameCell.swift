@@ -18,14 +18,19 @@ class GameCell: UICollectionViewCell {
     
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var title: UILabel!
-    @IBOutlet weak var buttonStar: UIButton!
+    @IBOutlet weak var imageStar: UIImageView!
+    @IBOutlet weak var viewStar: UIView! {
+        didSet {
+            viewStar.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapSatar(_:))))
+        }
+    }
     
     weak var delegate : GameCellDelegate?
     
     var isFavorite : Bool? {
         didSet {
             guard let isFavorite = isFavorite else { return }
-            buttonStar.tintColor = isFavorite ? .starSelected : .white
+            imageStar.tintColor = isFavorite ? .starSelected : .white
         }
     }
     
@@ -37,7 +42,7 @@ class GameCell: UICollectionViewCell {
         return UINib(nibName: identifier, bundle: nil)
     }
 
-    @IBAction func didTapSatar(_ sender: UIButton) {
+    @objc func didTapSatar(_ sender: UIGestureRecognizer) {
         delegate?.didTapStarFor(cell: self)
     }
     

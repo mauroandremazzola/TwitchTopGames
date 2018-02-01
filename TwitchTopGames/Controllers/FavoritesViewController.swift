@@ -11,11 +11,9 @@ import CoreData
 
 class FavoritesViewController: UIViewController {
 
-    private let dataManager = DataManager()
-    
-    internal var games = [Game]() {
+    @IBOutlet weak var viewPlaceholder: UIView! {
         didSet {
-            collection.reloadData()
+            viewPlaceholder.isHidden = true
         }
     }
     
@@ -25,24 +23,34 @@ class FavoritesViewController: UIViewController {
         }
     }
     
+    private let dataManager = DataManager()
+    
+    internal var games = [Game]() {
+        didSet {
+            collection.reloadData()
+            viewPlaceholder.isHidden = games.count > 0
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadFavorites()
         NotificationCenter.default.addObserver(self, selector: #selector(didAddToFavorites(_:)), name: .addToFavorites, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(didRemoveFromFavorites(_:)), name: .removeFromFavorites, object: nil)
+        updateNumberOfItemsPerRow()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         loadFavorites()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        view.layoutIfNeeded()
-        collection.setNumberOfItensForRow(itens: 2, spacing: 10)
-        view.layoutIfNeeded()
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate(alongsideTransition: nil) { _ in
+            self.updateNumberOfItemsPerRow()
+        }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -79,6 +87,18 @@ class FavoritesViewController: UIViewController {
     
     private func loadFavorites() {
         games = dataManager.loadFavorites()
+    }
+    
+    private func updateNumberOfItemsPerRow() {
+        let orientation = UIDevice.current.orientation
+        guard let layout = collection?.collectionViewLayout as? GridViewLayout else { return }
+        
+        if UIDeviceOrientationIsPortrait(orientation) {
+            layout.setNumberOfItemsPerRow(itensPerRow: 2, minimumInteritemSpacing: 5, minimumLineSpacing: 5)
+        } else {
+            layout.setNumberOfItemsPerRow(itensPerRow: 3, minimumInteritemSpacing: 5, minimumLineSpacing: 5)
+        }
+        layout.invalidateLayout()
     }
 }
 
