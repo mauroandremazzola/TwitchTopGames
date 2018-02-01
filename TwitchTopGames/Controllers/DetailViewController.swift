@@ -26,6 +26,7 @@ class DetailViewController: UIViewController {
         initUI()
         NotificationCenter.default.addObserver(self, selector: #selector(didAddToFavorites(_:)), name: .addToFavorites, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(didRemoveFromFavorites(_:)), name: .removeFromFavorites, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didUpdatedViewers(_:)), name: .updatedViewers, object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,6 +49,17 @@ class DetailViewController: UIViewController {
         if let id = userInfo[GameKeys.id] as? Int32, id == game?.id {
             game?.isFavorite = false
             buttonStar.tintColor = .white
+        }
+    }
+    
+    @objc func didUpdatedViewers(_ notification: NSNotification) {
+        guard let userInfo = notification.userInfo,
+            let id = userInfo[GameKeys.id] as? Int32,
+            let viewers = userInfo[GameKeys.viewers] as? Int32 else { return }
+       
+        if game?.id == id {
+            game?.viewers = viewers
+            labelviewers.text = "\(viewers)"
         }
     }
 

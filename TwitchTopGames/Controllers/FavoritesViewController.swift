@@ -37,6 +37,7 @@ class FavoritesViewController: UIViewController {
         loadFavorites()
         NotificationCenter.default.addObserver(self, selector: #selector(didAddToFavorites(_:)), name: .addToFavorites, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(didRemoveFromFavorites(_:)), name: .removeFromFavorites, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didUpdatedViewers(_:)), name: .updatedViewers, object: nil)
         updateNumberOfItemsPerRow()
     }
     
@@ -69,6 +70,10 @@ class FavoritesViewController: UIViewController {
     }
     
     @objc func didRemoveFromFavorites(_ notification: NSNotification) {
+        loadFavorites()
+    }
+    
+    @objc func didUpdatedViewers(_ notification: NSNotification) {
         loadFavorites()
     }
     
@@ -113,8 +118,8 @@ extension FavoritesViewController: UICollectionViewDataSource, UICollectionViewD
             fatalError()
         }
         let game = games[indexPath.item]
-        cell.title.text = game.name
         cell.image.af_setSafeImage(withURL: game.image)
+        cell.title.text = "#\(indexPath.item+1) " + (game.name ?? "")
         cell.isFavorite = game.isFavorite
         cell.delegate = self
         return cell

@@ -35,12 +35,12 @@ public class Game: NSManagedObject, Decodable {
         name = gameInfo.name
         viewers = try container.decode(Int32.self, forKey: .viewers)
         image = URL(string: gameInfo.box.large)
-        setFavorite(game: self)
+        updateFavoriteGameIfNeeded(game: self)
     }
 
     //MARK - privates
     
-    private func setFavorite(game: Game) {
+    private func updateFavoriteGameIfNeeded(game: Game) {
         let dataManager = DataManager()
         let fetchRequest = Game.fetchRequest() as NSFetchRequest<Game>
         fetchRequest.predicate = NSPredicate(format: "id = %ld", game.id)
@@ -48,8 +48,15 @@ public class Game: NSManagedObject, Decodable {
         do {
             if let finded = try dataManager.context.fetch(fetchRequest).first {
                 isFavorite = true
-                finded.viewers = game.viewers
-                dataManager.saveContext()
+                
+                if finded.viewers != game.viewers {
+                    finded.viewers = game.viewers
+                    dataManager.saveContext()
+                    let userInfo : [GameKeys : Any] = [.id : game.id, .viewers : viewers]
+                    NotificationCenter.default.post(name: .updatedViewers, object: nil, userInfo: userInfo)
+                }
+                
+                
             } else {
                 isFavorite = false
             }

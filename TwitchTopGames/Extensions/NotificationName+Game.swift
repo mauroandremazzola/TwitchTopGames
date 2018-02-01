@@ -10,11 +10,13 @@ import Foundation
 
 enum GameKeys: String {
     case id
+    case viewers
 }
 
 extension Notification.Name {
     
     static let addToFavorites = Notification.Name("addToFavorites")
     static let removeFromFavorites = Notification.Name("removeFromFavorites")
+    static let updatedViewers = Notification.Name("updatedViewers")
 
 }

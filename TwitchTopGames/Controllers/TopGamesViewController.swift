@@ -89,14 +89,12 @@ class TopGamesViewController: UIViewController {
     //MARK - notification methods
     
     @objc func didAddToFavorites(_ notification: NSNotification) {
-        guard let userInfo = notification.userInfo,
-            let id = userInfo[GameKeys.id] as? Int32 else { return }
+        guard let userInfo = notification.userInfo, let id = userInfo[GameKeys.id] as? Int32 else { return }
        updateFavoriteGame(id:id, isFavorite: true)
     }
     
     @objc func didRemoveFromFavorites(_ notification: NSNotification) {
-        guard let userInfo = notification.userInfo,
-            let id = userInfo[GameKeys.id] as? Int32 else { return }
+        guard let userInfo = notification.userInfo, let id = userInfo[GameKeys.id] as? Int32 else { return }
         updateFavoriteGame(id:id, isFavorite: false)
     }
 
@@ -214,7 +212,7 @@ extension TopGamesViewController: UICollectionViewDataSource, UICollectionViewDe
         }
         let game = filtered[indexPath.item]
         cell.image.af_setSafeImage(withURL: game.image)
-        cell.title.text = game.name
+        cell.title.text = "#\(indexPath.item+1) " + (game.name ?? "")
         cell.isFavorite = game.isFavorite
         cell.delegate = self
         return cell
