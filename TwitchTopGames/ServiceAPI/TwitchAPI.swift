@@ -23,7 +23,7 @@ enum GameAPI {
 
 class TwitchAPI: NSObject {
     
-    private static let clientID = "4wpv3e5w14qcskgfhfinodo9lbwqr0"
+    private static let clientID = ""
     static let endpoint = "https://api.twitch.tv/kraken/games/top"
     
     static let headers : [String : String] = [
