@@ -27,3 +27,8 @@ private static let clientID = "(your clientID here)"
 - This project uses [fastlane](https://fastlane.tools/)
 
 - Install the fastlane through the terminal [see more here](https://docs.fastlane.tools/getting-started/ios/setup/)
+
+```
+cd path/TwitchTopGames
+fastlane tests
+```
