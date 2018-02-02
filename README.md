@@ -7,7 +7,7 @@ See the top Twitch games and save your favorites
 
 ```
 cd path/TwitchTopGames
-pod install
+pod install or pod update
 ```
 
 - You need to create a Client ID for the [Twitch API](https://dev.twitch.tv/docs/v5/guides/using-the-twitch-api#getting-a-client-id)
