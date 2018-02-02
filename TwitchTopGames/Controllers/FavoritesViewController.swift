@@ -118,7 +118,7 @@ extension FavoritesViewController: UICollectionViewDataSource, UICollectionViewD
             fatalError()
         }
         let game = games[indexPath.item]
-        cell.image.af_setSafeImage(withURL: game.image)
+        cell.image.af_setSafeImage(withURL: game.image, placeholderImage: #imageLiteral(resourceName: "gamePlaceholder"))
         cell.title.text = "#\(indexPath.item+1) " + (game.name ?? "")
         cell.isFavorite = game.isFavorite
         cell.delegate = self

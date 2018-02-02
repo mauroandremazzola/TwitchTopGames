@@ -228,7 +228,7 @@ extension TopGamesViewController: UICollectionViewDataSource, UICollectionViewDe
             fatalError()
         }
         let game = filtered[indexPath.item]
-        cell.image.af_setSafeImage(withURL: game.image)
+        cell.image.af_setSafeImage(withURL: game.image, placeholderImage: #imageLiteral(resourceName: "gamePlaceholder"))
         cell.title.text = getGamePosition(game) + (game.name ?? "")
         cell.isFavorite = game.isFavorite
         cell.delegate = self

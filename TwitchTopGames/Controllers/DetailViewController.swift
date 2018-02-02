@@ -66,7 +66,7 @@ class DetailViewController: UIViewController {
     //MARK - private
     
     private func initUI() {
-        image.af_setSafeImage(withURL: game?.image)
+        image.af_setSafeImage(withURL: game?.image, placeholderImage: #imageLiteral(resourceName: "gamePlaceholder"))
         labelName.text = game?.name
         if let viewers = game?.viewers {
             labelviewers.text = "\(viewers)"
