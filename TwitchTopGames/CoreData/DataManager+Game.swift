@@ -17,18 +17,26 @@ extension DataManager {
             fatalError("Failed to decode Game =/")
         }
         
-        let favorite = Game(entity: description, insertInto: context)
-        favorite.name = game.name
-        favorite.id = game.id
-        favorite.image = game.image
-        favorite.viewers = game.viewers
+        if game.managedObjectContext != context {
+            let favorite = Game(entity: description, insertInto: context)
+            favorite.name = game.name
+            favorite.id = game.id
+            favorite.image = game.image
+            favorite.viewers = game.viewers
+        }
         
         context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         saveContext()
     }
     
     func removeFromFavorite(game: Game) {
-        context.delete(game)
+        if game.managedObjectContext != context {
+            if let finded = findGame(id: game.id) {
+                context.delete(finded)
+            }
+        } else {
+            context.delete(game)
+        }
         saveContext()
     }
     

@@ -7,12 +7,12 @@
 //
 
 import XCTest
+@testable import TwitchTopGames
 
 class TwitchTopGamesUITests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-
         // Put setup code here. This method is called before the invocation of each test method in the class.
 
         // In UI tests it is usually best to stop immediately when a failure occurs.
@@ -26,6 +26,7 @@ class TwitchTopGamesUITests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
+        
     }
 
     func testTopGamesToFavoritesBackTopGames() {
@@ -46,10 +47,15 @@ class TwitchTopGamesUITests: XCTestCase {
         let app = XCUIApplication()
         let navTopGames = app.navigationBars["Top Games"]
         let navDetail = app.navigationBars["Detail"]
-        app.collectionViews.cells.firstMatch.tap()
-        XCTAssert(navDetail.exists, "The Detail view navigation bar does not exist")
-        navDetail.buttons["Top Games"].tap()
-        XCTAssert(navTopGames.exists, "The top games view navigation bar does not exist")
+        if app.collectionViews.cells.count > 0 {
+            app.collectionViews.cells.firstMatch.tap()
+            XCTAssert(navDetail.exists, "The Detail view navigation bar does not exist")
+            navDetail.buttons["Top Games"].tap()
+            XCTAssert(navTopGames.exists, "The top games view navigation bar does not exist")
+        } else {
+            let label = app.staticTexts.element(matching: .any, identifier: "placeholder").label
+            XCTAssert(!label.isEmpty, "The placeholder view  does not exist")
+        }
     }
 
     func testFavoriteToDetailBackFavorite() {
@@ -58,10 +64,16 @@ class TwitchTopGamesUITests: XCTestCase {
         let navDetail = app.navigationBars["Detail"]
         let tabBarsQuery = XCUIApplication().tabBars
         tabBarsQuery.buttons["Favorites"].tap()
-        app.collectionViews.cells.firstMatch.tap()
-        XCTAssert(navDetail.exists, "The Detail view navigation bar does not exist")
-        navDetail.buttons["Favorites"].tap()
-        XCTAssert(navFavorite.exists, "The Favorites view navigation bar does not exist")
+        if app.collectionViews.cells.count > 0 {
+            app.collectionViews.cells.firstMatch.tap()
+            XCTAssert(navDetail.exists, "The Detail view navigation bar does not exist")
+            navDetail.buttons["Favorites"].tap()
+            XCTAssert(navFavorite.exists, "The Favorites view navigation bar does not exist")
+        } else {
+            let label = app.staticTexts.element(matching: .any, identifier: "placeholder").label
+            XCTAssert(!label.isEmpty, "The placeholder view  does not exist")
+        }
+
     }
 
 }

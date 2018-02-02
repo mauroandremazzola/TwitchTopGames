@@ -29,15 +29,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="274" height="282"/>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YhY-Eg-O9i">
-                        <rect key="frame" x="207.5" y="0.0" width="56.5" height="56.5"/>
+                        <rect key="frame" x="193.5" y="0.0" width="70.5" height="70.5"/>
                         <subviews>
                             <imageView clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_flag" translatesAutoresizingMaskIntoConstraints="NO" id="fYf-k9-Gdd">
-                                <rect key="frame" x="0.0" y="0.0" width="56.5" height="56.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="70.5" height="70.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="0.27058823529999998" green="0.1960784314" blue="0.45098039220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star" translatesAutoresizingMaskIntoConstraints="NO" id="bcb-NH-Ngj">
-                                <rect key="frame" x="11.5" y="3" width="34.5" height="34.5"/>
+                                <rect key="frame" x="14" y="3" width="43.5" height="43"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -87,7 +87,7 @@
                 <constraint firstAttribute="bottom" secondItem="wA6-mk-f0r" secondAttribute="bottom" id="DgT-LG-NhU"/>
                 <constraint firstItem="umO-qD-LpY" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="I0e-jG-lsE"/>
                 <constraint firstAttribute="bottom" secondItem="umO-qD-LpY" secondAttribute="bottom" id="Jmo-Jx-rJW"/>
-                <constraint firstItem="YhY-Eg-O9i" firstAttribute="height" secondItem="ZTg-uK-7eu" secondAttribute="height" multiplier="0.2" id="QXy-jf-UO2"/>
+                <constraint firstItem="YhY-Eg-O9i" firstAttribute="height" secondItem="ZTg-uK-7eu" secondAttribute="height" multiplier="0.25" id="QXy-jf-UO2"/>
                 <constraint firstAttribute="trailing" secondItem="YhY-Eg-O9i" secondAttribute="trailing" constant="10" id="RIn-oP-goU">
                     <variation key="heightClass=regular-widthClass=regular" constant="15"/>
                 </constraint>

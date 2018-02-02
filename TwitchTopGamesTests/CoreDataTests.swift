@@ -50,8 +50,7 @@ class CoreDataTests: XCTestCase {
     func testRemoveFromFavorite() {
         let dataManager = DataManager()
         dataManager.addToFavorites(gameTestOne)
-        let finded = dataManager.findGame(id: gameTestOne.id)!
-        dataManager.removeFromFavorite(game: finded)
+        dataManager.removeFromFavorite(game: gameTestOne)
         let games = dataManager.loadFavorites()
         XCTAssert(!games.contains(where: { $0.id == gameTestOne.id }), "Bug: DataManager+Game - removeFromFavorite() ")
     }

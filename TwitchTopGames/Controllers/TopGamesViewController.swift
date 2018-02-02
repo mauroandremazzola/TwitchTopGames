@@ -11,8 +11,12 @@ import AlamofireImage
 
 class TopGamesViewController: UIViewController {
     
+
     @IBOutlet weak var activityIndicator: ActivityIndicatorView!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var buttonReload: UIButton!
+    @IBOutlet weak var stackPlaceholder: UIStackView!
+    
     @IBOutlet weak var collection: UICollectionView! {
         didSet {
             collection.register(GameCell.getUINib(), forCellWithReuseIdentifier: GameCell.identifier)
@@ -20,7 +24,11 @@ class TopGamesViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var buttonReload: UIButton!
+    @IBOutlet weak var labelPlaceholderInfo: UILabel! {
+        didSet {
+            labelPlaceholderInfo.numberOfLines = 0
+        }
+    }
     
     let refreshControl : UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -125,6 +133,13 @@ class TopGamesViewController: UIViewController {
         collection.reloadData()
     }
     
+    fileprivate func getGamePosition(_ game: Game) -> String {
+        if let index = games.index(of: game) {
+            return "#\(index + 1) "
+        }
+        return ""
+    }
+    
     //MARK - privates
     
     private func updateNumberOfItemsPerRow() {
@@ -167,7 +182,7 @@ class TopGamesViewController: UIViewController {
         activityIndicator.startAnimating()
         collection.alpha = 0.4
         collection.isUserInteractionEnabled = false
-        self.buttonReload.isHidden =  true
+        stackPlaceholder.isHidden =  true
     }
     
     private func stopActivityIndicator(){
@@ -175,7 +190,10 @@ class TopGamesViewController: UIViewController {
         collection.isUserInteractionEnabled = true
         collection.alpha = 1
         refreshControl.endRefreshing()
-        buttonReload.isHidden = self.games.count > 0
+        if games.count <= 0 {
+            stackPlaceholder.isHidden = false
+            collection.setContentOffset(CGPoint.zero, animated: true)
+        }
     }
     
     private func showAlertMessage(_ message: String) {
@@ -212,7 +230,7 @@ extension TopGamesViewController: UICollectionViewDataSource, UICollectionViewDe
         }
         let game = filtered[indexPath.item]
         cell.image.af_setSafeImage(withURL: game.image)
-        cell.title.text = "#\(indexPath.item+1) " + (game.name ?? "")
+        cell.title.text = getGamePosition(game) + (game.name ?? "")
         cell.isFavorite = game.isFavorite
         cell.delegate = self
         return cell
