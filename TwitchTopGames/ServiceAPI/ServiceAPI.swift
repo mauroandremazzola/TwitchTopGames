@@ -39,10 +39,11 @@ class ServiceAPI: NSObject {
     
     @discardableResult
     class func request(config: RequestConfig, success: @escaping ((_ result : String?) -> Void),
-                       failure: @escaping ((_ error : Error?, _ errorMessage: String) -> Void)) -> Request {
+                       failure: @escaping ((_ error : Error?, _ errorMessage: String) -> Void)) -> Request? {
         
         if let hasConnection = Connectivity.isConnectedToInternet, !hasConnection {
             failure(nil, "no internet connection")
+            return nil
         }
         
         let request = Alamofire.request(config.url,

@@ -1,2 +1,21 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<testsuites tests='0' failures='0'/>
+<testsuites name='TwitchTopGamesUITests.xctest' tests='10' failures='0'>
+  <testsuite name='TwitchTopGamesTests.APITests' tests='1' failures='0'>
+    <testcase classname='TwitchTopGamesTests.APITests' name='testGameAPIAndDecodeGame' time='1.730'/>
+  </testsuite>
+  <testsuite name='TwitchTopGamesTests.CoreDataTests' tests='4' failures='0'>
+    <testcase classname='TwitchTopGamesTests.CoreDataTests' name='testFindGame' time='0.112'/>
+    <testcase classname='TwitchTopGamesTests.CoreDataTests' name='testGamesMustUniqueInFavorites' time='0.104'/>
+    <testcase classname='TwitchTopGamesTests.CoreDataTests' name='testLoadFavorites' time='0.048'/>
+    <testcase classname='TwitchTopGamesTests.CoreDataTests' name='testRemoveFromFavorite' time='0.056'/>
+  </testsuite>
+  <testsuite name='TwitchTopGamesTests.TwitchTopGamesTests' tests='2' failures='0'>
+    <testcase classname='TwitchTopGamesTests.TwitchTopGamesTests' name='testFavoriteGameNotification' time='0.199'/>
+    <testcase classname='TwitchTopGamesTests.TwitchTopGamesTests' name='testTopViewControllerearchBar' time='0.077'/>
+  </testsuite>
+  <testsuite name='TwitchTopGamesUITests.TwitchTopGamesUITests' tests='3' failures='0'>
+    <testcase classname='TwitchTopGamesUITests.TwitchTopGamesUITests' name='testFavoriteToDetailBackFavorite' time='7.163'/>
+    <testcase classname='TwitchTopGamesUITests.TwitchTopGamesUITests' name='testTopGamesToDetailBackTopGames' time='8.382'/>
+    <testcase classname='TwitchTopGamesUITests.TwitchTopGamesUITests' name='testTopGamesToFavoritesBackTopGames' time='7.657'/>
+  </testsuite>
+</testsuites>

@@ -84,7 +84,6 @@ class TopGamesViewController: UIViewController {
     @objc func refresh() {
         page = 0
         games.removeAll()
-        filtered.removeAll()
         loadGames()
     }
     
