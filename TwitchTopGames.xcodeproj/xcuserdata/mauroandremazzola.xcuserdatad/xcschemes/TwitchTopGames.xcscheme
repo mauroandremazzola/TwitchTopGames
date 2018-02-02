@@ -20,6 +20,34 @@
                ReferencedContainer = "container:TwitchTopGames.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C882A3792021690800284735"
+               BuildableName = "TwitchTopGamesUITests.xctest"
+               BlueprintName = "TwitchTopGamesUITests"
+               ReferencedContainer = "container:TwitchTopGames.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C8253436201BA56100FFB499"
+               BuildableName = "TwitchTopGamesTests.xctest"
+               BlueprintName = "TwitchTopGamesTests"
+               ReferencedContainer = "container:TwitchTopGames.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -29,6 +57,26 @@
       language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C8253436201BA56100FFB499"
+               BuildableName = "TwitchTopGamesTests.xctest"
+               BlueprintName = "TwitchTopGamesTests"
+               ReferencedContainer = "container:TwitchTopGames.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C882A3792021690800284735"
+               BuildableName = "TwitchTopGamesUITests.xctest"
+               BlueprintName = "TwitchTopGamesUITests"
+               ReferencedContainer = "container:TwitchTopGames.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
